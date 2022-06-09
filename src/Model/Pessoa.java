@@ -6,6 +6,7 @@ public abstract class Pessoa {
     private int id;
     private String nome;
     private int idade;
+    private String cpf;
 
     // Metodo Construtor de Objeto Vazio
     public Pessoa() {
@@ -25,6 +26,14 @@ public abstract class Pessoa {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public String getNome() {

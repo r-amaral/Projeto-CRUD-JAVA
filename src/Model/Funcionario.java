@@ -6,41 +6,39 @@ import DAO.FuncionarioDAO;
 public class Funcionario extends Pessoa {
 
     // Atributos
-    private String curso;
-    private int fase;
-
+    private String profissao;
+    private double salario;
+    
     // Metodo Construtor de Objeto Vazio
     public Funcionario() {
     }
 
     // Metodo Construtor de Objeto, inserindo dados
-    public Funcionario(String curso, int fase) {
-        this.curso = curso;
-        this.fase = fase;
+    public Funcionario(String profissao) {
+        this.profissao = profissao;
     }
 
     // Metodo Construtor usando tambem o construtor da SUPERCLASSE
-    public Funcionario(String curso, int fase, int id, String nome, int idade) {
+    public Funcionario(String profissao, int id, String nome, int idade) {
         super(id, nome, idade);
-        this.curso = curso;
-        this.fase = fase;
+        this.profissao = profissao;
     }
 
     // Modos GET e SET
-    public String getCurso() {
-        return curso;
+    public String getProfissao() {
+        return profissao;
     }
 
-    public void setCurso(String curso) {
-        this.curso = curso;
+    public double getSalario() {
+        return salario;
     }
 
-    public int getFase() {
-        return fase;
+    public void setSalario(double salario) {
+        this.salario = salario;
     }
 
-    public void setFase(int fase) {
-        this.fase = fase;
+    public void setProfissao(String profissao) {
+        this.profissao = profissao;
     }
 
     // Override necessário para poder retornar os dados de Pessoa no toString para funcionarios.
@@ -49,8 +47,7 @@ public class Funcionario extends Pessoa {
         return "\n ID: " + this.getId()
                 + "\n Nome: " + this.getNome()
                 + "\n Idade: " + this.getIdade()
-                + "\n Curso: " + this.getCurso()
-                + "\n Fase:" + this.getFase()
+                + "\n profissao: " + this.getProfissao()
                 + "\n -----------";
     }
 
@@ -66,9 +63,9 @@ public class Funcionario extends Pessoa {
     }
 
     // Cadastra novo funcionario
-    public boolean InsertFuncionarioBD(String curso, int fase, String nome, int idade) {
+    public boolean InsertFuncionarioBD(String profissao, int fase, String nome, int idade) {
         int id = this.maiorID() + 1;
-        Funcionario objeto = new Funcionario(curso, fase, id, nome, idade);
+        Funcionario objeto = new Funcionario(profissao, id, nome, idade);
         FuncionarioDAO.MinhaLista.add(objeto);
         return true;
 
@@ -82,8 +79,8 @@ public class Funcionario extends Pessoa {
     }
 
     // Edita um funcionario especefico pelo seu campo ID
-    public boolean UpdateFuncionarioBD(String curso, int fase, int id, String nome, int idade) {
-        Funcionario objeto = new Funcionario(curso, fase, id, nome, idade);
+    public boolean UpdateFuncionarioBD(String profissao, int fase, int id, String nome, int idade) {
+        Funcionario objeto = new Funcionario(profissao, id, nome, idade);
         int indice = this.procuraIndice(id);
         FuncionarioDAO.MinhaLista.set(indice, objeto);
         return true;
@@ -105,9 +102,9 @@ public class Funcionario extends Pessoa {
         int indice = this.procuraIndice(id);
         return FuncionarioDAO.MinhaLista.get(indice);
     }
-    
+
     // retorna o maior ID da nossa base de dados
-    public int maiorID(){
+    public int maiorID() {
         return FuncionarioDAO.maiorID();
-    }   
+    }
 }

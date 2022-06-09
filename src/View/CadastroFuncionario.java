@@ -140,7 +140,7 @@ public class CadastroFuncionario extends javax.swing.JFrame {
     private void b_cadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_cadastrarActionPerformed
 
         try {
-            // recebendo e validando dados da interface grfica.
+            // recebendo e validando dados da interface grafica.
             String nome = "";
             int idade = 0;
             String curso = "";
