@@ -9,6 +9,10 @@ public class Funcionario extends Pessoa {
     private String profissao;
     private double salario;
     
+    FuncionarioDAO objFuncionario = new FuncionarioDAO();
+    
+    
+    
     // Metodo Construtor de Objeto Vazio
     public Funcionario() {
     }
@@ -71,6 +75,7 @@ public class Funcionario extends Pessoa {
         int id = this.maiorID() + 1;
         Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf);
         FuncionarioDAO.MinhaLista.add(objeto);
+        objFuncionario.InsertFuncionarioBD(objeto);
         return true;
 
     }
@@ -78,6 +83,7 @@ public class Funcionario extends Pessoa {
     // Deleta um funcionario especefico pelo seu campo ID
     public boolean DeleteFuncionarioBD(int id) {
         int indice = this.procuraIndice(id);
+        objFuncionario.DeleteFuncionarioBD(id);
         FuncionarioDAO.MinhaLista.remove(indice);
         return true;
     }
@@ -86,6 +92,7 @@ public class Funcionario extends Pessoa {
     public boolean UpdateFuncionarioBD(String profissao,double salario,int id, String nome, int idade, String cpf) {
         Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf);
         int indice = this.procuraIndice(id);
+        objFuncionario.UpdateFuncionarioBD(objeto);
         FuncionarioDAO.MinhaLista.set(indice, objeto);
         return true;
     }
@@ -104,6 +111,7 @@ public class Funcionario extends Pessoa {
     // carrega dados de um funcionario especfico pelo seu ID
     public Funcionario carregaFuncionario(int id) {
         int indice = this.procuraIndice(id);
+        objFuncionario.carregaFuncionario(id);
         return FuncionarioDAO.MinhaLista.get(indice);
     }
 

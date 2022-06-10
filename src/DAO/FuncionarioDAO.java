@@ -1,51 +1,55 @@
 package DAO;
 
 import Model.Funcionario;
-import com.sun.jdi.connect.spi.Connection;
+import java.sql.Statement;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.ResultSet;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.*;
+import javax.swing.JOptionPane;
 //import java.util.logging.Level;
 //import java.util.logging.Logger;
 
 public class FuncionarioDAO {
-    
+
     public static ArrayList<Funcionario> MinhaLista = new ArrayList<Funcionario>();
 
-   public static int maiorID() {
+    public static int maiorID() {
 
-       int maiorID = 0;;
+        int maiorID = 0;;
         for (int i = 0; i < MinhaLista.size(); i++) {
             if (MinhaLista.get(i).getId() > maiorID) {
-               maiorID = MinhaLista.get(i).getId();
+                maiorID = MinhaLista.get(i).getId();
             }
         }
         return maiorID;
     }
-/*
+    
+//--------------------------Conexão------------------------------
     public Connection getConexao() {
-
         Connection connection = null; //instância da conexão
-
         try {
-// Carregamento do JDBC Driver
             String driver = "com.mysql.cj.jdbc.Driver";
             Class.forName(driver);
-// Configurar a conexão
             String server = "localhost";
             String database = "java-crud";
             String url = "jdbc:mysql://" + server + ":3306/" + database
                     + "?useTimezone=true&serverTimezone=UTC";
             String user = "root";
             String password = "ajmp141028";
-            // Conectando..
+
             connection = DriverManager.getConnection(url, user, password);
-// Testando..
+
             if (connection != null) {
                 System.out.println("Status: Conectado!");
             } else {
                 System.out.println("Status: NÃO CONECTADO!");
             }
             return connection;
-        } catch (ClassNotFoundException e) { //Driver não encontrado
+        } catch (ClassNotFoundException e) {
             System.out.println("O driver nao foi encontrado.");
             return null;
         } catch (SQLException e) {
@@ -69,16 +73,54 @@ public class FuncionarioDAO {
                 Funcionario objeto = new Funcionario(profissao, salario, id, nome, idade, cpf);
                 MinhaLista.add(objeto);
             }
-
             stmt.close();
         } catch (SQLException ex) {
         }
         return MinhaLista;
     }
+    
+    //--------------------------Update----------------------------------------
+    public boolean UpdateFuncionarioBD(Funcionario objeto){
+        String sql = "UPDATE tb_funcionarios set nome = ?, idade = ?, profissao = ?, salario = ?, cpf = ? WHERE id = ?";
+        try{
+            PreparedStatement stmt = this.getConexao().prepareStatement(sql);
+            stmt.setString(1,objeto.getNome());
+            stmt.setInt(2,objeto.getIdade());
+            stmt.setString(3,objeto.getProfissao());
+            stmt.setDouble(4,objeto.getSalario());
+            stmt.setString(5,objeto.getCpf());
+            stmt.setInt(6,objeto.getId());
+            stmt.execute();
+            stmt.close();
+            return true;
+        }catch(SQLException erro){
+            throw new RuntimeException(erro);
+        }
+    }
+    
+//---------------------CarregaFuncionario----------------------------------------
+    public Funcionario carregaFuncionario(int id) {
+        Funcionario objeto = new Funcionario();
+        objeto.setId(id);
+        try {
+            Statement stmt = this.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT * id FROM tb_funcionarios WHERE id =" + id);
+            res.next();
+            objeto.setNome(res.getString("nome"));
+            objeto.setIdade(res.getInt("idade"));
+            objeto.setProfissao(res.getString("profissao"));
+            objeto.setSalario(res.getDouble("salario"));
+            objeto.setCpf(res.getString("cpf"));
+            stmt.close();
 
-    // Cadastra novo Funcionario
-    public boolean InsertAlunoBD(Funcionario objeto) {
-        String sql = "INSERT INTO tb_funcionarios(id,nome,idade,profissao,salario,cpf) VALUES(?,?,?,?,?)";
+        } catch (SQLException erro) {
+        }
+        return objeto;
+    }
+    
+    //-------------------------Cadastrar----------------------------------
+    public boolean InsertFuncionarioBD(Funcionario objeto) {
+        String sql = "INSERT INTO tb_funcionarios(id,nome,idade,profissao,salario,cpf) VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = this.getConexao().prepareStatement(sql);
             stmt.setInt(1, objeto.getId());
@@ -93,5 +135,30 @@ public class FuncionarioDAO {
         } catch (SQLException erro) {
             throw new RuntimeException(erro);
         }
+    }
+    
+//-------------------------Delete----------------------------------
+    public boolean DeleteFuncionarioBD(int id) {
+        try {
+            Statement stmt = this.getConexao().createStatement();
+            stmt.executeUpdate("DELETE FROM tb_funcionarios WHERE id = " + id);
+            stmt.close();
+        } catch (SQLException erro) {
+        }
+        return true;
+    }
+    
+  /*  public int maiorID() throws SQLException{
+        int maiorID = 0;
+        try{
+            Statement stmt = this.getConexao().createStatement();
+            ResultSet res = stmt.executeQuery("SELECT MAX(id) id FROM tb_funcionarios");
+            res.next();
+            maiorID = res.getInt("id");
+            stmt.close();
+            
+        }catch (SQLException ex){
+        }
+        return maiorID;
     }*/
 }

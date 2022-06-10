@@ -1,9 +1,14 @@
 package View;
 
+import DAO.FuncionarioDAO;
 import Model.Funcionario;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -15,24 +20,20 @@ import javax.swing.text.MaskFormatter;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
-//    GerenciaFuncionario objeto = new GerenciaFuncionario();
-
     private Funcionario objfuncionario;
 
     public TelaPrincipal() throws ParseException {
         initComponents();
-        
-//        MaskFormatter mascaraCpf = new MaskFormatter("###.###.###-##");;
-//        JFormattedTextField cpf = new JFormattedTextField(mascaraCpf);
 
         this.objfuncionario = new Funcionario();
 
+        FuncionarioDAO objBanco = new FuncionarioDAO();
+        
 //      GitButton.setOpaque(false);
         Jpanel_Section_2.setVisible(true);
         Menu_Cont_1.setVisible(false);
         Menu_Cont_3.setVisible(false);
         Menu_Cont_2.setVisible(false);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -59,15 +60,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Menu_Cont_2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableFuncionario = new javax.swing.JTable();
-        c_cpf1 = new javax.swing.JTextField();
+        g_cpf = new javax.swing.JTextField();
         b_Limpar = new javax.swing.JButton();
         b_alterar = new javax.swing.JButton();
         b_apagar = new javax.swing.JButton();
         L_Gerenciar_Header = new javax.swing.JLabel();
-        c_nome1 = new javax.swing.JTextField();
-        c_idade1 = new javax.swing.JTextField();
-        c_profissao1 = new javax.swing.JTextField();
-        c_salario1 = new javax.swing.JTextField();
+        g_nome = new javax.swing.JTextField();
+        g_idade = new javax.swing.JTextField();
+        g_profissao = new javax.swing.JTextField();
+        g_salario = new javax.swing.JTextField();
         Menu_Cont_1 = new javax.swing.JPanel();
         c_nome = new javax.swing.JTextField();
         c_idade = new javax.swing.JTextField();
@@ -77,6 +78,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         c_salario = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         Menu_Cont_3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         Header = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -249,7 +253,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Jpanel_Section_1.setLayout(Jpanel_Section_1Layout);
         Jpanel_Section_1Layout.setHorizontalGroup(
             Jpanel_Section_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Jpanel_Caixa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(Jpanel_Caixa, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addGroup(Jpanel_Section_1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(Jpanel_Section_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -315,10 +319,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Menu_Cont_2.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 700, 163));
 
-        c_cpf1.setBackground(new java.awt.Color(238, 238, 238));
-        c_cpf1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        c_cpf1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
-        Menu_Cont_2.add(c_cpf1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 330, -1));
+        g_cpf.setBackground(new java.awt.Color(238, 238, 238));
+        g_cpf.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        g_cpf.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "CPF", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        Menu_Cont_2.add(g_cpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, 330, -1));
 
         b_Limpar.setBackground(new java.awt.Color(54, 33, 89));
         b_Limpar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -359,25 +363,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
         L_Gerenciar_Header.setText("Gerenciar Funcionario");
         Menu_Cont_2.add(L_Gerenciar_Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 37, -1, 30));
 
-        c_nome1.setBackground(new java.awt.Color(238, 238, 238));
-        c_nome1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        c_nome1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
-        Menu_Cont_2.add(c_nome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 330, -1));
+        g_nome.setBackground(new java.awt.Color(238, 238, 238));
+        g_nome.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        g_nome.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "Nome", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        Menu_Cont_2.add(g_nome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 330, -1));
 
-        c_idade1.setBackground(new java.awt.Color(238, 238, 238));
-        c_idade1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        c_idade1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "Idade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
-        Menu_Cont_2.add(c_idade1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 330, -1));
+        g_idade.setBackground(new java.awt.Color(238, 238, 238));
+        g_idade.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        g_idade.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "Idade", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        Menu_Cont_2.add(g_idade, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 330, -1));
 
-        c_profissao1.setBackground(new java.awt.Color(238, 238, 238));
-        c_profissao1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        c_profissao1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "Profissão", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
-        Menu_Cont_2.add(c_profissao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 330, -1));
+        g_profissao.setBackground(new java.awt.Color(238, 238, 238));
+        g_profissao.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        g_profissao.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "Profissão", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        Menu_Cont_2.add(g_profissao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 330, -1));
 
-        c_salario1.setBackground(new java.awt.Color(238, 238, 238));
-        c_salario1.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
-        c_salario1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "Salário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
-        Menu_Cont_2.add(c_salario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 330, -1));
+        g_salario.setBackground(new java.awt.Color(238, 238, 238));
+        g_salario.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        g_salario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "Salário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
+        Menu_Cont_2.add(g_salario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 330, -1));
 
         Jpanel_Section_2.add(Menu_Cont_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 9, 720, 530));
 
@@ -487,15 +491,51 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Menu_Cont_3.setBackground(new java.awt.Color(0, 153, 51));
         Menu_Cont_3.setOpaque(false);
 
+        jLabel1.setBackground(new java.awt.Color(54, 33, 89));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel1.setText("Desenvolvido Por");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel2.setText("Ruan Vinicius Amaral de Oliveira");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon-git-64-64.png"))); // NOI18N
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout Menu_Cont_3Layout = new javax.swing.GroupLayout(Menu_Cont_3);
         Menu_Cont_3.setLayout(Menu_Cont_3Layout);
         Menu_Cont_3Layout.setHorizontalGroup(
             Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 710, Short.MAX_VALUE)
+            .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                .addGroup(Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                        .addGap(125, 125, 125)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(174, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_Cont_3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(103, 103, 103))
         );
         Menu_Cont_3Layout.setVerticalGroup(
             Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
+            .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                .addGap(104, 104, 104)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         Jpanel_Section_2.add(Menu_Cont_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 119, 710, 410));
@@ -523,7 +563,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void L_Gerenciar_FuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_Gerenciar_FuncionarioMouseClicked
         this.carregaTabela();
-
+        
         Jpanel_Section_2.setVisible(true);
         Menu_Cont_1.setVisible(false);
         Menu_Cont_3.setVisible(false);
@@ -581,11 +621,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             if (resposta_usuario == 0) {
                 if (this.objfuncionario.DeleteFuncionarioBD(id)) {
 
-                    this.c_nome1.setText("");
-                    this.c_idade1.setText("");
-                    this.c_profissao1.setText("");
-                    this.c_cpf1.setText("");
-                    this.c_salario1.setText("");
+                    this.g_nome.setText(null);
+                    this.g_idade.setText(null);
+                    this.g_profissao.setText(null);
+                    this.g_cpf.setText(null);
+                    this.g_salario.setText(null);
                     JOptionPane.showMessageDialog(rootPane, "Funcionário Apagado com Sucesso!");
                 }
 
@@ -610,34 +650,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
             double salario = 0;
             String profissao = "";
 
-            if (this.c_nome1.getText().length() < 2) {
+            if (this.g_nome.getText().length() < 2) {
                 throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
             } else {
-                nome = this.c_nome1.getText();
+                nome = this.g_nome.getText();
             }
 
-            if (this.c_idade1.getText().length() <= 0) {
+            if (this.g_idade.getText().length() <= 0) {
                 throw new Mensagens("Idade deve ser número e maior que zero.");
             } else {
-                idade = Integer.parseInt(this.c_idade1.getText());
+                idade = Integer.parseInt(this.g_idade.getText());
             }
 
-            if (this.c_profissao1.getText().length() < 2) {
+            if (this.g_profissao.getText().length() < 2) {
                 throw new Mensagens("Profissão deve conter ao menos 5 caracteres.");
             } else {
-                profissao = this.c_profissao1.getText();
+                profissao = this.g_profissao.getText();
             }
 
-            if (this.c_cpf1.getText().length() <= 10) {
-                throw new Mensagens("cpf deve ser maior que 10.");
+            if (this.g_cpf.getText().length() != 11) {
+                throw new Mensagens("cpf deve ter 11 caracteres.");
             } else {
-                cpf = this.c_cpf1.getText();
+                cpf = this.g_cpf.getText();
             }
 
-            if (this.c_salario1.getText().length() <= 0) {
+            if (this.g_salario.getText().length() <= 0) {
                 throw new Mensagens("salário deve ser numero e maior que 0.");
             } else {
-                salario = Integer.parseInt(this.c_salario1.getText());
+                salario = Integer.parseInt(this.g_salario.getText());
             }
 
             if (this.jTableFuncionario.getSelectedRow() == -1) {
@@ -650,11 +690,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             if (this.objfuncionario.UpdateFuncionarioBD(profissao, salario, id, nome, idade, cpf)) {
 
                 // limpa os campos
-                this.c_nome1.setText("");
-                this.c_idade1.setText("");
-                this.c_profissao1.setText("");
-                this.c_cpf1.setText("");
-                this.c_salario1.setText("");
+                this.g_nome.setText(null);
+                this.g_idade.setText(null);
+                this.g_profissao.setText(null);
+                this.g_cpf.setText(null);
+                this.g_salario.setText(null);
                 JOptionPane.showMessageDialog(rootPane, "Funcionário Alterado com Sucesso!");
 
             }
@@ -669,11 +709,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_b_alterarActionPerformed
 
     private void b_LimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_LimparActionPerformed
-        this.c_nome1.setText(null);
-        this.c_profissao1.setText(null);
-        this.c_salario1.setText(null);
-        this.c_idade1.setText(null);
-        this.c_cpf1.setText(null);
+        this.g_nome.setText(null);
+        this.g_profissao.setText(null);
+        this.g_salario.setText(null);
+        this.g_idade.setText(null);
+        this.g_cpf.setText(null);
     }//GEN-LAST:event_b_LimparActionPerformed
 
     private void jTableFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFuncionarioMouseClicked
@@ -686,11 +726,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             String cpf = this.jTableFuncionario.getValueAt(this.jTableFuncionario.getSelectedRow(), 4).toString();
             String salario = this.jTableFuncionario.getValueAt(this.jTableFuncionario.getSelectedRow(), 5).toString();
 
-            this.c_nome1.setText(nome);
-            this.c_idade1.setText(idade);
-            this.c_profissao1.setText(profissao);
-            this.c_salario1.setText(salario);
-            this.c_cpf1.setText(cpf);
+            this.g_nome.setText(nome);
+            this.g_idade.setText(idade);
+            this.g_profissao.setText(profissao);
+            this.g_salario.setText(salario);
+            this.g_cpf.setText(cpf);
         }
     }//GEN-LAST:event_jTableFuncionarioMouseClicked
 
@@ -707,6 +747,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             String cpf = "";
             double salario = 0;
             String profissao = "";
+            
+            
 
             if (this.c_nome.getText().length() < 2) {
                 throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
@@ -726,8 +768,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 profissao = this.c_profissao.getText();
             }
 
-            if (this.c_cpf.getText().length() <= 10) {
-                throw new Mensagens("cpf deve ser maior que 10.");
+            if (this.c_cpf.getText().length() != 11) {
+                throw new Mensagens("cpf deve ser ter 11 caracteres.");
             } else {
                 cpf = this.c_cpf.getText();
             }
@@ -743,11 +785,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(rootPane, "Funcionário Cadastrado com Sucesso!");
 
                 // limpa campos da interface
-                this.c_nome.setText("");
-                this.c_idade.setText("");
-                this.c_profissao.setText("");
-                this.c_cpf.setText("");
-                this.c_salario.setText("");
+                this.c_nome.setText(null);
+                this.c_idade.setText(null);
+                this.c_profissao.setText(null);
+                this.c_cpf.setText(null);
+                this.c_salario.setText(null);
 
             }
 
@@ -771,6 +813,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void c_salarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_salarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_c_salarioActionPerformed
+
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        try {
+            // TODO add your handling code here:
+            URI link = new URI("https://github.com/r-amaral/Projeto-CRUD-JAVA");
+            Desktop.getDesktop().browse(link);
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jLabel3MouseClicked
 
     @SuppressWarnings("unchecked")
     public void carregaTabela() {
@@ -845,18 +901,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton b_alterar;
     private javax.swing.JButton b_apagar;
     private javax.swing.JTextField c_cpf;
-    private javax.swing.JTextField c_cpf1;
     private javax.swing.JTextField c_idade;
-    private javax.swing.JTextField c_idade1;
     private javax.swing.JTextField c_nome;
-    private javax.swing.JTextField c_nome1;
     private javax.swing.JTextField c_profissao;
-    private javax.swing.JTextField c_profissao1;
     private javax.swing.JTextField c_salario;
-    private javax.swing.JTextField c_salario1;
+    private javax.swing.JTextField g_cpf;
+    private javax.swing.JTextField g_idade;
+    private javax.swing.JTextField g_nome;
+    private javax.swing.JTextField g_profissao;
+    private javax.swing.JTextField g_salario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
