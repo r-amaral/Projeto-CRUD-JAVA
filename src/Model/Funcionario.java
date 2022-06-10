@@ -14,14 +14,16 @@ public class Funcionario extends Pessoa {
     }
 
     // Metodo Construtor de Objeto, inserindo dados
-    public Funcionario(String profissao) {
+    public Funcionario(String profissao, double salario) {
         this.profissao = profissao;
+        this.salario = salario;
     }
 
     // Metodo Construtor usando tambem o construtor da SUPERCLASSE
-    public Funcionario(String profissao, int id, String nome, int idade) {
-        super(id, nome, idade);
+    public Funcionario(String profissao,double salario, int id, String nome, int idade, String cpf) {
+        super(id, nome, idade, cpf);
         this.profissao = profissao;
+        this.salario = salario;
     }
 
     // Modos GET e SET
@@ -47,7 +49,9 @@ public class Funcionario extends Pessoa {
         return "\n ID: " + this.getId()
                 + "\n Nome: " + this.getNome()
                 + "\n Idade: " + this.getIdade()
-                + "\n profissao: " + this.getProfissao()
+                + "\n CPF: " + this.getCpf()
+                + "\n Profissao: " + this.getProfissao()
+                + "\n Salario: " + this.getSalario()
                 + "\n -----------";
     }
 
@@ -63,9 +67,9 @@ public class Funcionario extends Pessoa {
     }
 
     // Cadastra novo funcionario
-    public boolean InsertFuncionarioBD(String profissao, int fase, String nome, int idade) {
+    public boolean InsertFuncionarioBD(String profissao,double salario, String nome, int idade, String cpf) {
         int id = this.maiorID() + 1;
-        Funcionario objeto = new Funcionario(profissao, id, nome, idade);
+        Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf);
         FuncionarioDAO.MinhaLista.add(objeto);
         return true;
 
@@ -79,8 +83,8 @@ public class Funcionario extends Pessoa {
     }
 
     // Edita um funcionario especefico pelo seu campo ID
-    public boolean UpdateFuncionarioBD(String profissao, int fase, int id, String nome, int idade) {
-        Funcionario objeto = new Funcionario(profissao, id, nome, idade);
+    public boolean UpdateFuncionarioBD(String profissao,double salario,int id, String nome, int idade, String cpf) {
+        Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf);
         int indice = this.procuraIndice(id);
         FuncionarioDAO.MinhaLista.set(indice, objeto);
         return true;

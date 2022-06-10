@@ -13,10 +13,11 @@ public abstract class Pessoa {
     }
 
     // Metodo Construtor de Objeto, inserindo dados
-    public Pessoa(int id, String nome, int idade) {
+    public Pessoa(int id, String nome, int idade, String cpf) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
+        this.cpf = cpf;
     }
 
     // Metodos GET e SET
