@@ -17,7 +17,7 @@ public class FuncionarioDAO {
 
     public static ArrayList<Funcionario> MinhaLista = new ArrayList<Funcionario>();
 
-    public static int maiorID() {
+    /*public static int maiorID() {
 
         int maiorID = 0;;
         for (int i = 0; i < MinhaLista.size(); i++) {
@@ -26,7 +26,7 @@ public class FuncionarioDAO {
             }
         }
         return maiorID;
-    }
+    }*/
     
 //--------------------------Conexão------------------------------
     public Connection getConexao() {
@@ -62,7 +62,7 @@ public class FuncionarioDAO {
         MinhaLista.clear(); // Limpa nosso ArrayList
         try {
             Statement stmt = this.getConexao().createStatement();
-            ResultSet res = stmt.executeQuery("SELECT * FROM java-crud");
+            ResultSet res = stmt.executeQuery("SELECT * FROM tb_funcionarios");
             while (res.next()) {
                 String profissao = res.getString("profissao");
                 double salario = res.getDouble("salario");
@@ -148,7 +148,7 @@ public class FuncionarioDAO {
         return true;
     }
     
-  /*  public int maiorID() throws SQLException{
+    public int maiorID() throws SQLException{
         int maiorID = 0;
         try{
             Statement stmt = this.getConexao().createStatement();
@@ -156,9 +156,8 @@ public class FuncionarioDAO {
             res.next();
             maiorID = res.getInt("id");
             stmt.close();
-            
         }catch (SQLException ex){
         }
         return maiorID;
-    }*/
+    }
 }

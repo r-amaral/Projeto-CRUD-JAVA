@@ -2,6 +2,7 @@ package Model;
 
 import java.util.*;
 import DAO.FuncionarioDAO;
+import java.sql.SQLException;
 
 public class Funcionario extends Pessoa {
 
@@ -10,8 +11,6 @@ public class Funcionario extends Pessoa {
     private double salario;
     
     FuncionarioDAO objFuncionario = new FuncionarioDAO();
-    
-    
     
     // Metodo Construtor de Objeto Vazio
     public Funcionario() {
@@ -67,11 +66,12 @@ public class Funcionario extends Pessoa {
      */
     // Retorna a Lista de funcionarios(objetos)
     public ArrayList getMinhaLista() {
-        return FuncionarioDAO.MinhaLista;
+        //return FuncionarioDAO.MinhaLista;
+        return objFuncionario.getMinhaLista();
     }
 
     // Cadastra novo funcionario
-    public boolean InsertFuncionarioBD(String profissao,double salario, String nome, int idade, String cpf) {
+    public boolean InsertFuncionarioBD(String profissao,double salario, String nome, int idade, String cpf) throws SQLException {
         int id = this.maiorID() + 1;
         Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf);
         FuncionarioDAO.MinhaLista.add(objeto);
@@ -116,7 +116,8 @@ public class Funcionario extends Pessoa {
     }
 
     // retorna o maior ID da nossa base de dados
-    public int maiorID() {
-        return FuncionarioDAO.maiorID();
+    public int maiorID() throws SQLException {
+       //return FuncionarioDAO.maiorID();
+       return objFuncionario.maiorID();
     }
 }
