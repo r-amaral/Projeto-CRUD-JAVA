@@ -102,7 +102,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel10.setIcon(new javax.swing.ImageIcon("C:\\Users\\ruana\\Downloads\\gerenciamento-de-arquivos.png")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/gerenciamento-de-arquivos.png"))); // NOI18N
 
         javax.swing.GroupLayout Jpanel_Gerenciar_FuncionarioLayout = new javax.swing.GroupLayout(Jpanel_Gerenciar_Funcionario);
         Jpanel_Gerenciar_Funcionario.setLayout(Jpanel_Gerenciar_FuncionarioLayout);
@@ -139,7 +139,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("C:\\Users\\ruana\\Downloads\\sair.png")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sair.png"))); // NOI18N
 
         javax.swing.GroupLayout Jpanel_SairLayout = new javax.swing.GroupLayout(Jpanel_Sair);
         Jpanel_Sair.setLayout(Jpanel_SairLayout);
@@ -165,7 +165,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         Jpanel_Novo_Funcionario.setBackground(new java.awt.Color(64, 43, 100));
 
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\ruana\\Downloads\\plus (3).png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/plus (3).png"))); // NOI18N
 
         L_Novo_Funcionario.setBackground(new java.awt.Color(204, 0, 51));
         L_Novo_Funcionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -212,7 +212,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\ruana\\Downloads\\sobre-nos.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/sobre-nos.png"))); // NOI18N
 
         javax.swing.GroupLayout Jpanel_SobreLayout = new javax.swing.GroupLayout(Jpanel_Sobre);
         Jpanel_Sobre.setLayout(Jpanel_SobreLayout);
