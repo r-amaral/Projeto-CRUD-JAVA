@@ -15,8 +15,8 @@ Projeto CRUD para A3 de Programações e Soluções Computacionais
 
 - Biblioteca absolute layout
 - Conector banco de dados MySql
-- Schema no mysql chamado "java-crud"
-- Tabela no mysql chamado "tb_funcionarios"
+- Schema no MySql chamado "java-crud"
+- Tabela no MySql chamado "tb_funcionarios"
 
 - Table = CREATE TABLE `tb_funcionarios` (
   `id` int NOT NULL,
