@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -26,10 +27,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
 
         this.objfuncionario = new Funcionario();
-
-        FuncionarioDAO objBanco = new FuncionarioDAO();
         
-//      GitButton.setOpaque(false);
         Jpanel_Section_2.setVisible(true);
         Menu_Cont_1.setVisible(false);
         Menu_Cont_3.setVisible(false);
@@ -84,7 +82,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Header = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Interface de Teste");
+        setTitle("Gerenciador de Funcionários");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Jpanel_Section_1.setBackground(new java.awt.Color(54, 33, 89));
@@ -98,7 +96,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         L_Gerenciar_Funcionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         L_Gerenciar_Funcionario.setForeground(new java.awt.Color(255, 255, 255));
-        L_Gerenciar_Funcionario.setText("Gerenciar Funcionario");
+        L_Gerenciar_Funcionario.setText("Gerenciar Funcionário");
         L_Gerenciar_Funcionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         L_Gerenciar_Funcionario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -174,7 +172,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         L_Novo_Funcionario.setBackground(new java.awt.Color(204, 0, 51));
         L_Novo_Funcionario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         L_Novo_Funcionario.setForeground(new java.awt.Color(255, 255, 255));
-        L_Novo_Funcionario.setText("Novo Funcionario");
+        L_Novo_Funcionario.setText("Novo Funcionário");
         L_Novo_Funcionario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         L_Novo_Funcionario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -244,7 +242,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         L_Gerenciador.setBackground(new java.awt.Color(255, 255, 255));
         L_Gerenciador.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         L_Gerenciador.setForeground(new java.awt.Color(255, 255, 255));
-        L_Gerenciador.setText("Gerenciador de Funcionarios");
+        L_Gerenciador.setText("Gerenciador de Funcionários");
 
         Separator_Gerenciador.setBackground(new java.awt.Color(255, 255, 255));
         Separator_Gerenciador.setForeground(new java.awt.Color(255, 255, 255));
@@ -253,7 +251,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Jpanel_Section_1.setLayout(Jpanel_Section_1Layout);
         Jpanel_Section_1Layout.setHorizontalGroup(
             Jpanel_Section_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Jpanel_Caixa, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(Jpanel_Caixa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addGroup(Jpanel_Section_1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(Jpanel_Section_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -360,7 +358,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         L_Gerenciar_Header.setBackground(new java.awt.Color(255, 255, 255));
         L_Gerenciar_Header.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         L_Gerenciar_Header.setForeground(new java.awt.Color(255, 255, 255));
-        L_Gerenciar_Header.setText("Gerenciar Funcionario");
+        L_Gerenciar_Header.setText("Gerenciar Funcionário");
         Menu_Cont_2.add(L_Gerenciar_Header, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 37, -1, 30));
 
         g_nome.setBackground(new java.awt.Color(238, 238, 238));
@@ -576,12 +574,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_L_Gerenciar_FuncionarioMouseClicked
 
     private void L_SairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_SairMouseClicked
-        System.exit(0);
-
         Jpanel_Gerenciar_Funcionario.setBackground(new Color(64, 43, 100));
         Jpanel_Gerenciar_Funcionario.setBackground(new Color(64, 43, 100));
         Jpanel_Sair.setBackground(new Color(64, 43, 100));
         Jpanel_Sair.setBackground(new Color(85, 85, 118));
+       
+        System.exit(0);
     }//GEN-LAST:event_L_SairMouseClicked
 
     private void L_Novo_FuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_Novo_FuncionarioMouseClicked
@@ -620,7 +618,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
             if (resposta_usuario == 0) {
                 if (this.objfuncionario.DeleteFuncionarioBD(id)) {
-
                     this.g_nome.setText(null);
                     this.g_idade.setText(null);
                     this.g_profissao.setText(null);
@@ -628,9 +625,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     this.g_salario.setText(null);
                     JOptionPane.showMessageDialog(rootPane, "Funcionário Apagado com Sucesso!");
                 }
-
             }
-
+            
             System.out.println(this.objfuncionario.getMinhaLista().toString());
 
         } catch (Mensagens erro) {
@@ -686,10 +682,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 id = Integer.parseInt(this.jTableFuncionario.getValueAt(this.jTableFuncionario.getSelectedRow(), 0).toString());
             }
 
-            // envia os dados para o Funcionario processar
             if (this.objfuncionario.UpdateFuncionarioBD(profissao, salario, id, nome, idade, cpf)) {
 
-                // limpa os campos
                 this.g_nome.setText(null);
                 this.g_idade.setText(null);
                 this.g_profissao.setText(null);
@@ -741,15 +735,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void B_Cadastro_CadrastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Cadastro_CadrastrarActionPerformed
         try {
-            // recebendo e validando dados da interface grafica.
             String nome = "";
             int idade = 0;
             String cpf = "";
             double salario = 0;
             String profissao = "";
             
-            
-
             if (this.c_nome.getText().length() < 2) {
                 throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
             } else {
@@ -780,17 +771,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 salario = Integer.parseInt(this.c_salario.getText());
             }
 
-            // envia os dados para o Controlador cadastrar
             if (this.objfuncionario.InsertFuncionarioBD(profissao, salario, nome, idade, cpf)) {
                 JOptionPane.showMessageDialog(rootPane, "Funcionário Cadastrado com Sucesso!");
 
-                // limpa campos da interface
                 this.c_nome.setText(null);
                 this.c_idade.setText(null);
                 this.c_profissao.setText(null);
                 this.c_cpf.setText(null);
                 this.c_salario.setText(null);
-
             }
 
             System.out.println(this.objfuncionario.getMinhaLista().toString());
@@ -799,6 +787,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } catch (NumberFormatException erro2) {
             JOptionPane.showMessageDialog(null, "Informe um número.");
+        } catch (SQLException ex) {
+            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_B_Cadastro_CadrastrarActionPerformed
 
@@ -811,12 +801,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_c_nomeActionPerformed
 
     private void c_salarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_c_salarioActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_c_salarioActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
         try {
-            // TODO add your handling code here:
             URI link = new URI("https://github.com/r-amaral/Projeto-CRUD-JAVA");
             Desktop.getDesktop().browse(link);
         } catch (MalformedURLException ex) {

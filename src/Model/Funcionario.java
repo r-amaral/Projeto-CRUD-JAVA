@@ -74,7 +74,7 @@ public class Funcionario extends Pessoa {
     public boolean InsertFuncionarioBD(String profissao,double salario, String nome, int idade, String cpf) throws SQLException {
         int id = this.maiorID() + 1;
         Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf);
-        FuncionarioDAO.MinhaLista.add(objeto);
+        //FuncionarioDAO.MinhaLista.add(objeto);
         objFuncionario.InsertFuncionarioBD(objeto);
         return true;
 
@@ -84,7 +84,7 @@ public class Funcionario extends Pessoa {
     public boolean DeleteFuncionarioBD(int id) {
         int indice = this.procuraIndice(id);
         objFuncionario.DeleteFuncionarioBD(id);
-        FuncionarioDAO.MinhaLista.remove(indice);
+       // FuncionarioDAO.MinhaLista.remove(indice);
         return true;
     }
 
@@ -93,7 +93,7 @@ public class Funcionario extends Pessoa {
         Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf);
         int indice = this.procuraIndice(id);
         objFuncionario.UpdateFuncionarioBD(objeto);
-        FuncionarioDAO.MinhaLista.set(indice, objeto);
+       // FuncionarioDAO.MinhaLista.set(indice, objeto);
         return true;
     }
 
