@@ -9,6 +9,7 @@ public class Funcionario extends Pessoa {
     // Atributos
     private String profissao;
     private double salario;
+    private String img;
     
     FuncionarioDAO objFuncionario = new FuncionarioDAO();
     
@@ -17,16 +18,20 @@ public class Funcionario extends Pessoa {
     }
 
     // Metodo Construtor de Objeto, inserindo dados
-    public Funcionario(String profissao, double salario) {
+
+    public Funcionario(String profissao, double salario, String img) {
         this.profissao = profissao;
         this.salario = salario;
+        this.img = img;
     }
+   
 
     // Metodo Construtor usando tambem o construtor da SUPERCLASSE
-    public Funcionario(String profissao,double salario, int id, String nome, int idade, String cpf) {
+    public Funcionario(String profissao, double salario, int id, String nome, int idade, String cpf, String img) {
         super(id, nome, idade, cpf);
         this.profissao = profissao;
         this.salario = salario;
+        this.img = img;
     }
 
     // Modos GET e SET
@@ -34,6 +39,14 @@ public class Funcionario extends Pessoa {
         return profissao;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+    
     public double getSalario() {
         return salario;
     }
@@ -55,15 +68,10 @@ public class Funcionario extends Pessoa {
                 + "\n CPF: " + this.getCpf()
                 + "\n Profissao: " + this.getProfissao()
                 + "\n Salario: " + this.getSalario()
+                + "\n Imagem: " + this.getImg()
                 + "\n -----------";
     }
 
-    /*
-    
-        ABAIXO OS MeTODOS PARA USO JUNTO COM O DAO
-        SIMULANDO A ESTRUTURA EM CAMADAS PARA USAR COM BANCOS DE DADOS.
-    
-     */
     // Retorna a Lista de funcionarios(objetos)
     public ArrayList getMinhaLista() {
         //return FuncionarioDAO.MinhaLista;
@@ -71,9 +79,9 @@ public class Funcionario extends Pessoa {
     }
 
     // Cadastra novo funcionario
-    public boolean InsertFuncionarioBD(String profissao,double salario, String nome, int idade, String cpf) throws SQLException {
+    public boolean InsertFuncionarioBD(String profissao,double salario, String nome, int idade, String cpf, String img) throws SQLException {
         int id = this.maiorID() + 1;
-        Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf);
+        Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf, img);
         //FuncionarioDAO.MinhaLista.add(objeto);
         objFuncionario.InsertFuncionarioBD(objeto);
         return true;
@@ -89,8 +97,8 @@ public class Funcionario extends Pessoa {
     }
 
     // Edita um funcionario especefico pelo seu campo ID
-    public boolean UpdateFuncionarioBD(String profissao,double salario,int id, String nome, int idade, String cpf) {
-        Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf);
+    public boolean UpdateFuncionarioBD(String profissao,double salario,int id, String nome, int idade, String cpf,String img) {
+        Funcionario objeto = new Funcionario(profissao,salario, id, nome, idade, cpf, img);
         int indice = this.procuraIndice(id);
         objFuncionario.UpdateFuncionarioBD(objeto);
        // FuncionarioDAO.MinhaLista.set(indice, objeto);

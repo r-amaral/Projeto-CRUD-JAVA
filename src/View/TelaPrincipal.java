@@ -1,23 +1,22 @@
 package View;
 
-import DAO.FuncionarioDAO;
 import Model.Funcionario;
 import java.awt.Color;
 import java.awt.Desktop;
+import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.MaskFormatter;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 
 public class TelaPrincipal extends javax.swing.JFrame {
 
@@ -27,7 +26,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
 
         this.objfuncionario = new Funcionario();
-        
+
         Jpanel_Section_2.setVisible(true);
         Menu_Cont_1.setVisible(false);
         Menu_Cont_3.setVisible(false);
@@ -55,6 +54,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         L_Gerenciador = new javax.swing.JLabel();
         Separator_Gerenciador = new javax.swing.JSeparator();
         Jpanel_Section_2 = new javax.swing.JPanel();
+        Menu_Cont_3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         Menu_Cont_2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableFuncionario = new javax.swing.JTable();
@@ -67,6 +72,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         g_idade = new javax.swing.JTextField();
         g_profissao = new javax.swing.JTextField();
         g_salario = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
+        loadImg1 = new Model.LoadImg();
+        jLabel5 = new javax.swing.JLabel();
         Menu_Cont_1 = new javax.swing.JPanel();
         c_nome = new javax.swing.JTextField();
         c_idade = new javax.swing.JTextField();
@@ -75,10 +83,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         c_cpf = new javax.swing.JTextField();
         c_salario = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        Menu_Cont_3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        B_Upload_Img = new javax.swing.JButton();
+        L_img = new javax.swing.JLabel();
         Header = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -251,7 +257,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Jpanel_Section_1.setLayout(Jpanel_Section_1Layout);
         Jpanel_Section_1Layout.setHorizontalGroup(
             Jpanel_Section_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Jpanel_Caixa, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(Jpanel_Caixa, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE)
             .addGroup(Jpanel_Section_1Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(Jpanel_Section_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -277,6 +283,81 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Jpanel_Section_2.setOpaque(false);
         Jpanel_Section_2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Menu_Cont_3.setBackground(new java.awt.Color(0, 153, 51));
+        Menu_Cont_3.setOpaque(false);
+
+        jLabel1.setBackground(new java.awt.Color(54, 33, 89));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel1.setText("Desenvolvido Por");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel2.setText("Patrick R Gama R Machado");
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon-git-64-64.png"))); // NOI18N
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Sobre");
+
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel7.setText("Ruan Vinicius Amaral de Oliveira");
+
+        javax.swing.GroupLayout Menu_Cont_3Layout = new javax.swing.GroupLayout(Menu_Cont_3);
+        Menu_Cont_3.setLayout(Menu_Cont_3Layout);
+        Menu_Cont_3Layout.setHorizontalGroup(
+            Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_Cont_3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(96, 96, 96))
+            .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                .addGroup(Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                        .addGap(309, 309, 309)
+                        .addComponent(jLabel4))
+                    .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(155, Short.MAX_VALUE))
+            .addGroup(Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                    .addGap(144, 144, 144)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(155, Short.MAX_VALUE)))
+        );
+        Menu_Cont_3Layout.setVerticalGroup(
+            Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(Menu_Cont_3Layout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(73, 73, 73)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
+            .addGroup(Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_Cont_3Layout.createSequentialGroup()
+                    .addContainerGap(310, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(181, 181, 181)))
+        );
+
+        Jpanel_Section_2.add(Menu_Cont_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, -1, 710, 530));
+
         Menu_Cont_2.setBackground(new java.awt.Color(255, 255, 255));
         Menu_Cont_2.setForeground(new java.awt.Color(255, 255, 255));
         Menu_Cont_2.setOpaque(false);
@@ -286,21 +367,21 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jTableFuncionario.setForeground(new java.awt.Color(0, 0, 0));
         jTableFuncionario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Nome", "Idade", "Profissão", "CPF", "Salário"
+                "ID", "Nome", "Idade", "Profissão", "CPF", "Salário", "Imagem"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -381,6 +462,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         g_salario.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(54, 33, 89)), "Salário", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 2, 14), new java.awt.Color(0, 0, 0))); // NOI18N
         Menu_Cont_2.add(g_salario, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 330, -1));
 
+        javax.swing.GroupLayout loadImg1Layout = new javax.swing.GroupLayout(loadImg1);
+        loadImg1.setLayout(loadImg1Layout);
+        loadImg1Layout.setHorizontalGroup(
+            loadImg1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 210, Short.MAX_VALUE)
+        );
+        loadImg1Layout.setVerticalGroup(
+            loadImg1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 140, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(loadImg1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(loadImg1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        Menu_Cont_2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 210, 140));
+
+        jLabel5.setBackground(new java.awt.Color(54, 33, 89));
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(54, 33, 89));
+        jLabel5.setText("Foto Funcionário");
+        Menu_Cont_2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, -1, -1));
+
         Jpanel_Section_2.add(Menu_Cont_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 9, 720, 530));
 
         Menu_Cont_1.setBackground(new java.awt.Color(0, 0, 255));
@@ -411,6 +522,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         B_Cadastro_Cadrastrar.setForeground(new java.awt.Color(255, 255, 255));
         B_Cadastro_Cadrastrar.setText("Cadastrar");
         B_Cadastro_Cadrastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        B_Cadastro_Cadrastrar.setEnabled(false);
         B_Cadastro_Cadrastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 B_Cadastro_CadrastrarActionPerformed(evt);
@@ -438,6 +550,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Cadastrar Funcionario");
 
+        B_Upload_Img.setBackground(new java.awt.Color(54, 33, 89));
+        B_Upload_Img.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        B_Upload_Img.setForeground(new java.awt.Color(255, 255, 255));
+        B_Upload_Img.setText("Upload Foto Funcionário");
+        B_Upload_Img.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        B_Upload_Img.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                B_Upload_ImgActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout Menu_Cont_1Layout = new javax.swing.GroupLayout(Menu_Cont_1);
         Menu_Cont_1.setLayout(Menu_Cont_1Layout);
         Menu_Cont_1Layout.setHorizontalGroup(
@@ -457,19 +580,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(Menu_Cont_1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(Menu_Cont_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Menu_Cont_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(c_salario, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(c_profissao, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(B_Cadastro_Cadrastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE))
-                    .addComponent(c_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(Menu_Cont_1Layout.createSequentialGroup()
+                        .addComponent(L_img, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(Menu_Cont_1Layout.createSequentialGroup()
+                        .addGroup(Menu_Cont_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(c_salario)
+                            .addComponent(c_profissao)
+                            .addComponent(c_cpf, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                            .addGroup(Menu_Cont_1Layout.createSequentialGroup()
+                                .addComponent(B_Upload_Img, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(B_Cadastro_Cadrastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         Menu_Cont_1Layout.setVerticalGroup(
             Menu_Cont_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_Cont_1Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addComponent(c_nome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(c_cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -479,64 +609,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(c_profissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(c_salario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(B_Cadastro_Cadrastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(L_img, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(Menu_Cont_1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(B_Upload_Img, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(B_Cadastro_Cadrastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(37, 37, 37))
         );
 
         Jpanel_Section_2.add(Menu_Cont_1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 720, 530));
-
-        Menu_Cont_3.setBackground(new java.awt.Color(0, 153, 51));
-        Menu_Cont_3.setOpaque(false);
-
-        jLabel1.setBackground(new java.awt.Color(54, 33, 89));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(54, 33, 89));
-        jLabel1.setText("Desenvolvido Por");
-
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(54, 33, 89));
-        jLabel2.setText("Ruan Vinicius Amaral de Oliveira");
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon-git-64-64.png"))); // NOI18N
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel3MouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout Menu_Cont_3Layout = new javax.swing.GroupLayout(Menu_Cont_3);
-        Menu_Cont_3.setLayout(Menu_Cont_3Layout);
-        Menu_Cont_3Layout.setHorizontalGroup(
-            Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Menu_Cont_3Layout.createSequentialGroup()
-                .addGroup(Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(Menu_Cont_3Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(Menu_Cont_3Layout.createSequentialGroup()
-                        .addGap(72, 72, 72)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(174, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_Cont_3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(103, 103, 103))
-        );
-        Menu_Cont_3Layout.setVerticalGroup(
-            Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Menu_Cont_3Layout.createSequentialGroup()
-                .addGap(104, 104, 104)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(119, Short.MAX_VALUE))
-        );
-
-        Jpanel_Section_2.add(Menu_Cont_3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-2, 119, 710, 410));
 
         getContentPane().add(Jpanel_Section_2, new org.netbeans.lib.awtextra.AbsoluteConstraints(354, 0, -1, 542));
 
@@ -561,7 +643,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void L_Gerenciar_FuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_L_Gerenciar_FuncionarioMouseClicked
         this.carregaTabela();
-        
+
+        L_img.setText(null);
+
         Jpanel_Section_2.setVisible(true);
         Menu_Cont_1.setVisible(false);
         Menu_Cont_3.setVisible(false);
@@ -578,7 +662,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Jpanel_Gerenciar_Funcionario.setBackground(new Color(64, 43, 100));
         Jpanel_Sair.setBackground(new Color(64, 43, 100));
         Jpanel_Sair.setBackground(new Color(85, 85, 118));
-       
+
         System.exit(0);
     }//GEN-LAST:event_L_SairMouseClicked
 
@@ -623,12 +707,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     this.g_profissao.setText(null);
                     this.g_cpf.setText(null);
                     this.g_salario.setText(null);
+                    this.L_img.setText(null);
                     JOptionPane.showMessageDialog(rootPane, "Funcionário Apagado com Sucesso!");
                 }
             }
-            
             System.out.println(this.objfuncionario.getMinhaLista().toString());
-
         } catch (Mensagens erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
         } finally {
@@ -645,6 +728,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             String cpf = "";
             double salario = 0;
             String profissao = "";
+            String img = L_img.getText();
 
             if (this.g_nome.getText().length() < 2) {
                 throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
@@ -682,15 +766,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 id = Integer.parseInt(this.jTableFuncionario.getValueAt(this.jTableFuncionario.getSelectedRow(), 0).toString());
             }
 
-            if (this.objfuncionario.UpdateFuncionarioBD(profissao, salario, id, nome, idade, cpf)) {
+            if (this.objfuncionario.UpdateFuncionarioBD(profissao, salario, id, nome, idade, cpf, img)) {
 
                 this.g_nome.setText(null);
                 this.g_idade.setText(null);
                 this.g_profissao.setText(null);
                 this.g_cpf.setText(null);
                 this.g_salario.setText(null);
+                this.L_img.setText(null);
                 JOptionPane.showMessageDialog(rootPane, "Funcionário Alterado com Sucesso!");
-
             }
             System.out.println(this.objfuncionario.getMinhaLista().toString());
         } catch (Mensagens erro) {
@@ -708,6 +792,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         this.g_salario.setText(null);
         this.g_idade.setText(null);
         this.g_cpf.setText(null);
+        this.L_img.setText(null);
     }//GEN-LAST:event_b_LimparActionPerformed
 
     private void jTableFuncionarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableFuncionarioMouseClicked
@@ -719,12 +804,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
             String profissao = this.jTableFuncionario.getValueAt(this.jTableFuncionario.getSelectedRow(), 3).toString();
             String cpf = this.jTableFuncionario.getValueAt(this.jTableFuncionario.getSelectedRow(), 4).toString();
             String salario = this.jTableFuncionario.getValueAt(this.jTableFuncionario.getSelectedRow(), 5).toString();
+            String img = this.jTableFuncionario.getValueAt(this.jTableFuncionario.getSelectedRow(), 6).toString();
 
             this.g_nome.setText(nome);
             this.g_idade.setText(idade);
             this.g_profissao.setText(profissao);
             this.g_salario.setText(salario);
             this.g_cpf.setText(cpf);
+
+            loadImg1.setImg(new ImageIcon(img));
+            setDefs();
         }
     }//GEN-LAST:event_jTableFuncionarioMouseClicked
 
@@ -740,7 +829,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
             String cpf = "";
             double salario = 0;
             String profissao = "";
-            
+            String img = "";
+
+            img = L_img.getText();
+
             if (this.c_nome.getText().length() < 2) {
                 throw new Mensagens("Nome deve conter ao menos 2 caracteres.");
             } else {
@@ -771,9 +863,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 salario = Integer.parseInt(this.c_salario.getText());
             }
 
-            if (this.objfuncionario.InsertFuncionarioBD(profissao, salario, nome, idade, cpf)) {
+            if (this.objfuncionario.InsertFuncionarioBD(profissao, salario, nome, idade, cpf, img)) {
                 JOptionPane.showMessageDialog(rootPane, "Funcionário Cadastrado com Sucesso!");
 
+                B_Cadastro_Cadrastrar.setEnabled(false);
+                B_Upload_Img.setEnabled(true);
+
+                this.L_img.setText(null);
                 this.c_nome.setText(null);
                 this.c_idade.setText(null);
                 this.c_profissao.setText(null);
@@ -785,8 +881,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         } catch (Mensagens erro) {
             JOptionPane.showMessageDialog(null, erro.getMessage());
-        } catch (NumberFormatException erro2) {
-            JOptionPane.showMessageDialog(null, "Informe um número.");
+//        } catch (NumberFormatException erro2) {
+//            JOptionPane.showMessageDialog(null, "Informe um número.");
         } catch (SQLException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -816,6 +912,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel3MouseClicked
 
+    private void B_Upload_ImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_B_Upload_ImgActionPerformed
+        JFileChooser fc = new JFileChooser();
+        fc.showOpenDialog(null);
+
+        File arquivo = fc.getSelectedFile();
+        boolean exists = arquivo.exists();
+        if (exists) {
+            String caminho = arquivo.getAbsolutePath();
+            L_img.setText(caminho);
+            B_Cadastro_Cadrastrar.setEnabled(true);
+            B_Upload_Img.setEnabled(false);
+        }
+    }//GEN-LAST:event_B_Upload_ImgActionPerformed
+
     @SuppressWarnings("unchecked")
     public void carregaTabela() {
 
@@ -832,7 +942,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 a.getIdade(),
                 a.getProfissao(),
                 a.getCpf(),
-                a.getSalario()
+                a.getSalario(),
+                a.getImg()
             });
         }
     }
@@ -865,8 +976,41 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
     }
 
+    public void setDefs() {
+
+        javax.swing.GroupLayout loadImg1Layout = new javax.swing.GroupLayout(loadImg1);
+        loadImg1.setLayout(loadImg1Layout);
+
+        loadImg1Layout.setHorizontalGroup(
+                loadImg1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 194, Short.MAX_VALUE)
+        );
+        loadImg1Layout.setVerticalGroup(
+                loadImg1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(loadImg1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+                jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(loadImg1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addContainerGap())
+        );
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton B_Cadastro_Cadrastrar;
+    private javax.swing.JButton B_Upload_Img;
     private javax.swing.JPanel Header;
     private javax.swing.JPanel Jpanel_Caixa;
     private javax.swing.JPanel Jpanel_Gerenciar_Funcionario;
@@ -881,6 +1025,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel L_Novo_Funcionario;
     private javax.swing.JLabel L_Sair;
     private javax.swing.JLabel L_Sobre;
+    private javax.swing.JLabel L_img;
     private javax.swing.JPanel Menu_Cont_1;
     private javax.swing.JPanel Menu_Cont_2;
     private javax.swing.JPanel Menu_Cont_3;
@@ -904,9 +1049,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableFuncionario;
+    private Model.LoadImg loadImg1;
     // End of variables declaration//GEN-END:variables
 }

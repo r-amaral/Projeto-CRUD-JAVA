@@ -4,30 +4,15 @@ import Model.Funcionario;
 import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.ResultSet;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.*;
-import javax.swing.JOptionPane;
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
 
 public class FuncionarioDAO {
 
     public static ArrayList<Funcionario> MinhaLista = new ArrayList<Funcionario>();
 
-    /*public static int maiorID() {
-
-        int maiorID = 0;;
-        for (int i = 0; i < MinhaLista.size(); i++) {
-            if (MinhaLista.get(i).getId() > maiorID) {
-                maiorID = MinhaLista.get(i).getId();
-            }
-        }
-        return maiorID;
-    }*/
-    
 //--------------------------Conexão------------------------------
     public Connection getConexao() {
         Connection connection = null; //instância da conexão
@@ -70,7 +55,8 @@ public class FuncionarioDAO {
                 String nome = res.getString("nome");
                 int idade = res.getInt("idade");
                 String cpf = res.getString("cpf");
-                Funcionario objeto = new Funcionario(profissao, salario, id, nome, idade, cpf);
+                String img = res.getString("imgpath");
+                Funcionario objeto = new Funcionario(profissao, salario, id, nome, idade, cpf, img);
                 MinhaLista.add(objeto);
             }
             stmt.close();
@@ -89,6 +75,7 @@ public class FuncionarioDAO {
             stmt.setString(3,objeto.getProfissao());
             stmt.setDouble(4,objeto.getSalario());
             stmt.setString(5,objeto.getCpf());
+//            stmt.setString(6,objeto.getImg());
             stmt.setInt(6,objeto.getId());
             stmt.execute();
             stmt.close();
@@ -111,6 +98,7 @@ public class FuncionarioDAO {
             objeto.setProfissao(res.getString("profissao"));
             objeto.setSalario(res.getDouble("salario"));
             objeto.setCpf(res.getString("cpf"));
+            objeto.setImg(res.getString("imgpath"));
             stmt.close();
 
         } catch (SQLException erro) {
@@ -120,7 +108,7 @@ public class FuncionarioDAO {
     
     //-------------------------Cadastrar----------------------------------
     public boolean InsertFuncionarioBD(Funcionario objeto) {
-        String sql = "INSERT INTO tb_funcionarios(id,nome,idade,profissao,salario,cpf) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO tb_funcionarios(id,nome,idade,profissao,salario,cpf,imgpath) VALUES(?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = this.getConexao().prepareStatement(sql);
             stmt.setInt(1, objeto.getId());
@@ -129,6 +117,7 @@ public class FuncionarioDAO {
             stmt.setString(4, objeto.getProfissao());
             stmt.setDouble(5, objeto.getSalario());
             stmt.setString(6, objeto.getCpf());
+            stmt.setString(7, objeto.getImg());
             stmt.execute();
             stmt.close();
             return true;
