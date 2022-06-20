@@ -2,10 +2,6 @@
 
 Projeto CRUD para A3 de Programações e Soluções Computacionais
 
-<div align='center'>
-<img src="https://user-images.githubusercontent.com/105545187/173220821-1583d618-7cbf-4ba1-b6da-cc0d79370198.png" width='900px' height='400px'>
-</div>
-
 # Tecnologia Usada
 
 - Java
@@ -16,7 +12,7 @@ Projeto CRUD para A3 de Programações e Soluções Computacionais
 - Biblioteca absolute layout
 - Conector banco de dados MySql
 - Schema no MySql chamado "java-crud"
-- Tabela no MySql chamado "tb_funcionarios"
+- Tabela no MySql chamada "tb_funcionarios"
 
 - Table = CREATE TABLE `tb_funcionarios` (
   `id` int NOT NULL,
