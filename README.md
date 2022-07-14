@@ -3,7 +3,7 @@
 Projeto CRUD para A3 de Programações e Soluções Computacionais
 
 <div align='center'>
-<img src='https://user-images.githubusercontent.com/105545187/174506987-c151a821-268c-41ee-8baf-2326c4d0fb09.png'>
+<img src='https://user-images.githubusercontent.com/105545187/178858408-737b983f-5655-4314-8c2a-71e3499f7f91.png'>
 </div>
 
 # Tecnologia Usada
