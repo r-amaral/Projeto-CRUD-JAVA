@@ -56,7 +56,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Jpanel_Section_2 = new javax.swing.JPanel();
         Menu_Cont_3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -291,10 +290,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(54, 33, 89));
         jLabel1.setText("Desenvolvido Por");
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(54, 33, 89));
-        jLabel2.setText("Patrick R Gama R Machado");
-
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icon-git-64-64.png"))); // NOI18N
         jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -315,10 +310,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         Menu_Cont_3.setLayout(Menu_Cont_3Layout);
         Menu_Cont_3Layout.setHorizontalGroup(
             Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_Cont_3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(96, 96, 96))
             .addGroup(Menu_Cont_3Layout.createSequentialGroup()
                 .addGroup(Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(Menu_Cont_3Layout.createSequentialGroup()
@@ -326,11 +317,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(Menu_Cont_3Layout.createSequentialGroup()
                         .addGap(309, 309, 309)
-                        .addComponent(jLabel4))
-                    .addGroup(Menu_Cont_3Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(155, Short.MAX_VALUE))
+                        .addComponent(jLabel4)))
+                .addContainerGap(347, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_Cont_3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(94, 94, 94))
             .addGroup(Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(Menu_Cont_3Layout.createSequentialGroup()
                     .addGap(144, 144, 144)
@@ -344,11 +336,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 173, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
+                .addGap(114, 114, 114)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addGap(81, 81, 81))
             .addGroup(Menu_Cont_3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_Cont_3Layout.createSequentialGroup()
                     .addContainerGap(310, Short.MAX_VALUE)
@@ -1047,7 +1037,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
