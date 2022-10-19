@@ -1,6 +1,6 @@
 # Projeto-CRUD-JAVA
 
-Projeto CRUD para A3 de Programações e Soluções Computacionais
+CRUD desenvolvido e estilizado em Java
 
 <div align='center'>
 <img src='https://user-images.githubusercontent.com/105545187/178858408-737b983f-5655-4314-8c2a-71e3499f7f91.png'>
